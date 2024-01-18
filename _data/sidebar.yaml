@@ -1,0 +1,31 @@
+novichku:
+  - name: "Новичку"
+    url: "/guide"
+  - name: "Описание игры"
+    url: "/about"
+  - name: "Гид по игре"
+    url: "/guide"
+  - name: "Скачать клиент"
+    url: "/update" 
+
+ot-razrabotchikov:
+  - name: "От разработчиков"
+    url: "/in_development"
+  - name: "В разработке"
+    url: "/in_development"
+
+media:
+  - name: "Медиа"
+    url: "/tech_trees"
+  - name: "Скриншоты"
+    url: "/screenshots"
+  - name: "Деревья развития"
+    url: "/tech_trees"
+
+fan-zona:
+  - name: "Фан-зона"
+    url: "/fan-zone"
+  - name: "Фан-арт"
+    url: "/fan-art"
+  - name: "Фан-видео"
+    url: "/fan-video"

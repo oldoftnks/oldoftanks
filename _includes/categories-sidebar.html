@@ -1,0 +1,12 @@
+<ul class="b-nav__sub">
+    {% assign length = include.category_names | size | minus: 1 %}
+    {% for i in (0..length) %}
+        <ul>
+            <li>
+                <a {% unless include.category_urls[i] == page.url %}href="{{ include.category_urls[i] | relative_url }}"{% endunless %} class="news-list {% if include.category_urls[i] == page.url %}active{% endif %}">
+                    <span>{{ include.category_names[i] }}</span>
+                </a>
+            </li>
+        </ul>
+    {% endfor %}
+</ul>

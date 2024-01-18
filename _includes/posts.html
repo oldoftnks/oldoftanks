@@ -1,0 +1,43 @@
+<div class="news-text">
+    {% if page.url == '/' %}
+        <h2 class="title">Вести с фронтов</h2>
+    {% else %}
+        <h2 class="title">{{ include.title | upcase | default: НОВОСТИ }}</h2>
+    {% endif %}
+    <div class="hr">
+        <hr>
+    </div>
+</div>
+{% assign post_num = 1 %}
+
+{% if paginator != nil %}
+    {% assign posts = paginator.posts %}
+    {% assign max-posts = 20 %}
+{% else %}
+    {% assign posts = site.posts %}
+    {% assign max-posts = 5 %}
+{% endif %}
+{% for post in posts | limit: max-posts %}
+    <div class="b-feed b-feed_news">
+        <div class="b-feed__item">
+            <p class="fi__date">{{ post.date | date: "%d.%m.%Y" }}</p>
+            <div class="fi__i">
+                <p><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p>
+            </div>
+        </div>
+        <div class="hr">
+            <hr>
+        </div>
+    {% assign post_num = post_num | plus: 1 %}
+{% endfor %}
+{% if post_num < 6 and paginator == nil %}
+    {% include suggestion-panel.html %}
+{% endif %}
+{% if page.url == '/' %}
+        <p class="b-feed__more">
+            <a href="{{ '/news/' | relative_url }}">
+                <span>Архив новостей</span>
+            </a>
+        </p>
+    </div>
+{% endif %}

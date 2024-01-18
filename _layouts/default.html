@@ -1,0 +1,80 @@
+{% include head.html %}
+
+<body>
+    <div class="l-page">
+        <div class="l-page__i">
+            {% include header.html %}
+            <div class="l-body">
+                <div class="l-body__side">
+                    <div class="l-body__side__i">
+                        <div class="b-tex">
+                            <div class="b-tex__l">
+                                <div class="b-tex__b b-tex__b_bl">
+                                    <div class="b-nav">
+                                        <div class="b-panel b-panel2">
+                                            <div class="b-panel__t"></div>
+                                            <div class="b-panel__r">
+                                                <div class="b-panel__l">
+                                                    <div class="b-panel__i">
+                                                        <ul class="b-nav__i">
+                                                            <li class="b-nav__item">
+                                                                <a href="{{ '/news/' | relative_url }}" class="b-nav__section novosti ">
+                                                                    <span>Новости</span>
+                                                                </a>
+                                                                {% assign category_names = "" %}
+                                                                {% assign category_urls = "" %}
+                                                                {% for category in site.categories reversed %}
+                                                                    {% assign category_name = category[0] %}
+                                                                    {% assign category_name = site.data.categories[category_name] %}
+                                                                    {% assign category_names = category_names | append: category_name | append: "|" %}
+                                                                    {% assign category_url = "/news/" | append: category[0] %}
+                                                                    {% assign category_urls = category_urls | append: category_url | append: "/index.html|" %}
+                                                                {% endfor %}
+                                                                {% assign category_names = category_names | split: "|" %}
+                                                                {% assign category_urls = category_urls | split: "|" %}
+                                                                {% include categories-sidebar.html category_names=category_names category_urls=category_urls %}
+                                                            </li>
+                                                            {% for item in site.data.sidebar %}
+                                                            <li class="b-nav__item">
+                                                                <a href="{{ item[1][0].url }}" class="b-nav__section {{ item[0] }}">
+                                                                    <span>{{ item[1][0].name }}</span>
+                                                                </a>
+                                                                <ul class="b-nav__sub">
+                                                                    {% for link in item[1] offset:1 %}
+                                                                    <li>
+                                                                        <a {% unless link.url == page.url %}href="{{ link.url }}"{% else %}class="news-list active"{% endunless %}>{{ link.name }}</a>
+                                                                    </li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="b-panel__b">
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="b-webs">
+                                        <div class="b-panel b-panel_small">
+                                            {% include socials.html %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                        {% include block.html %}
+                        {{ content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include footer.html %}
+</body>

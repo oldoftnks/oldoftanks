@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<div class="l-body__section">
+    <div class="l-body__section__i">
+        <div class="b-tex">
+            <div class="b-tex__b">
+                <div class="b-tex__lr" style="min-height: 935px;">
+                    <div class="b-panel">
+                        <div class="b-panel__t">
+                            <div></div>
+                        </div>
+                        <div class="b-panel__r">
+                            <div class="b-panel__l">
+                                <div class="b-panel__i bp__minheight">
+                                    <div class="b-crumbs">
+                                        <a href="{{ '/' | relative_url }}">Главная</a> {% if page.url != "/news/index.html" %} › <a href="{{ '/news/' | relative_url }}">Новости</a>{% endif %}
+                                        {% assign category = page.categories[0] %}
+                                        <a href="{{ '/news/' | append: page.categories[0] | relative_url }}">{{ site.data.categories[category] }}</a>
+                                        <i class="darr"></i>
+                                    </div>
+                                    {% assign path = page.url | split: "/" %}
+                                    {% for category in site.data.categories %}
+                                        {% if path contains category[0] %}
+                                            {% assign category = category[0] %}
+                                            {% assign title = category[1] %}
+                                            {% break %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if page.title == "Все новости" %}{% assign title = "НОВОСТИ" %}{% endif %}
+                                    {% include posts.html title=title %}
+                                    {% if paginator.page_trail %}
+                                    <div class="l-pager paginator">
+                                        <ul class="b-pager">
+                                            <li class="b-pager_item b-pager_item__pages">
+                                                {% if paginator.page_trail[0].num != paginator.first_page %}
+                                                    <a class="b-pager_link" href="{{ paginator.first_page_path | relative_url }}">{{ paginator.first_page }}</a>
+                                                    {% assign v = paginator.page_trail[0].num | minus: 1 %}
+                                                    {% if v > paginator.first_page %}
+                                                    <span class="b-pager_ellipsis">…</span>
+                                                    {% endif %}
+                                                    {% endif %}
+                                                    {% for trail in paginator.page_trail %}
+                                                    <a class="b-pager_link {% if trail.num == paginator.page %}current"{% else %}" href="{{ trail.path | relative_url }}"{% endif %}>{{ trail.num }}</a>
+                                                    {% endfor %}
+                                                    {% if paginator.page_trail[-1].num != paginator.last_page %}
+                                                    {% assign v = paginator.page_trail[-1].num | plus: 1 %}
+                                                    {% if v < paginator.last_page %}
+                                                    <span class="b-pager_ellipsis">…</span>
+                                                    {% endif %}
+                                                    <a class="b-pager_link" href="{{ paginator.last_page_path | relative_url }}">{{ paginator.last_page }}</a>
+                                                    {% endif %}
+                                                </li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="b-panel__b">
+    <div></div>
+</div>
+</div>
+</div>
