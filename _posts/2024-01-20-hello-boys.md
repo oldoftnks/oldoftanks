@@ -4,7 +4,7 @@ category: announcements
 ---
 
 <h2 class="b-lead">Узнаем немного больше о американских танках.</h2>
-<p class="b-date">19 января 2024</p>
+<p class="b-date">20 января 2024</p>
 
 ![techwork]({{ '/assets/img/art/news/announcement.jpg' | relative_url }})
 
